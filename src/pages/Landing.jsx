@@ -10,7 +10,8 @@ export default class Landing extends Component{
         
         this.state = {
             competitions: [],
-            leagueTable: []
+            leagueTable: [],
+            activeLeague: ""
         }
     }
 
@@ -21,7 +22,9 @@ export default class Landing extends Component{
                 var data = response.data
 
                 if(typeof data !== undefined){
-                    this.setState({ competitions: data })
+                    this.setState({ 
+                        competitions: data
+                    })
 
                     this.getLeagueTable(data[0].id)
                 }
@@ -31,14 +34,20 @@ export default class Landing extends Component{
     getLeagueTable(id){
         FootyAPI.getCompetitions(id + '/leagueTable')
             .then( (response) => {
-                this.setState({ leagueTable: response.data.standing })
+                var data = response.data
+                //console.log(data)
+
+                this.setState({ 
+                    leagueTable: data.standing,
+                    activeLeague: data.leagueCaption
+                })
             })
     }
 
     render(){
-        console.log(this.state)
+        //console.log(this.state)
 
-        const { competitions, leagueTable } = this.state
+        const { competitions, leagueTable, activeLeague } = this.state
 
         return(
             <div className="clearfix">
@@ -77,7 +86,7 @@ export default class Landing extends Component{
                 </div>
 
                 <div className="col-sm-9">
-                    <h4>Standings</h4>
+                    <h4>Standings: { activeLeague }</h4>
                     {
                         leagueTable.length > 0 ? 
 
@@ -104,7 +113,10 @@ export default class Landing extends Component{
                                 return(
                                     <tr key={ index }>
                                         <td>{ team.position }</td>
-                                        <td>{ team.teamName }</td>
+                                        <td>
+                                            <img src={ team.crestURI } alt="[IMG] " />
+                                            { team.teamName }
+                                        </td>
                                         <td>{ team.playedGames }</td>
                                         <td>{ team.wins }</td>
                                         <td>{ team.draws }</td>
