@@ -9,6 +9,12 @@ A football stats app built with some open source tools:
 - Football Icon from [Flaticon](footy-icon)
 
 
+Find the demo [here](http://footy-stats.mikewill.co.ke)
+
+Inspired by [FootyStats.org](footy-stats)
+
+
 [react-js]: https://reactjs.org/
 [footy-api]: http://www.football-data.org/
-[footy-icon]: https://www.flaticon.com/free-icon/football_201583#term=football&page=1&position=2
+[footy-icon]: https://www.flaticon.com/free-icon/soccer_350410#term=footbal&page=1&position=65
+[footy-stats]: https://footystats.org/
