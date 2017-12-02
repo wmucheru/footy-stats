@@ -9,6 +9,12 @@ A football stats app built with some open source tools:
 - Football Icon from [Flaticon](footy-icon)
 
 
+## Road Map
+
+* [ ] Add tabs for teams, fixtures and league table
+* [ ] Persist active league on reload
+* [ ] Select and compare teams
+
 Find the demo [here](http://footy-stats.mikewill.co.ke)
 
 Inspired by [FootyStats.org](footy-stats)
