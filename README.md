@@ -19,9 +19,6 @@ A football stats app built with some open source tools:
 - `yarn build`
 - `yarn run deploy`
 
-
-Find the demo [here](http://github.io.footy-stats)
-
 Inspired by [FootyStats.org](footy-stats)
 
 [react-js]: https://reactjs.org/
