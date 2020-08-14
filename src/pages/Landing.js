@@ -128,7 +128,7 @@ export default class Landing extends Component{
                                     <tr key={ index }>
                                         <td>{ team.position }</td>
                                         <td>
-                                            <img src={ team.team.crestUrl } alt="[IMG] " />
+                                            <img src={ team.team.crestUrl } alt="[IMG]" />
                                             { team.team.name }
                                         </td>
                                         <td>{ team.playedGames }</td>
