@@ -9,13 +9,18 @@ A football stats app built with some open source tools:
 - Football Icon from [Flaticon](footy-icon)
 
 
-## Road Map
+## Deploy to gh-pages
 
-* [ ] Add tabs for teams, fixtures and league table
-* [ ] Persist active league on reload
-* [ ] Select and compare teams
+- `yarn add --dev gh-pages`
+- Add url to `package.json`: `http://wmucheru.github.io/footy-stats`
+- Add the following lines to scripts: 
+    - `"predeploy": "yarn build"`,
+    - `"deploy": "gh-pages -d build"`
+- `yarn build`
+- `yarn run deploy`
 
-Find the demo [here](http://footy-stats.mikewill.co.ke)
+
+Find the demo [here](http://github.io.footy-stats)
 
 Inspired by [FootyStats.org](footy-stats)
 
