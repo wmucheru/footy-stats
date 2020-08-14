@@ -132,7 +132,7 @@ export default class Landing extends Component{
                                             { team.team.name }
                                         </td>
                                         <td>{ team.playedGames }</td>
-                                        <td>{ team.wins }</td>
+                                        <td>{ team.won }</td>
                                         <td>{ team.draw }</td>
                                         <td>{ team.lost }</td>
                                         <td>{ team.goalsFor }</td>
