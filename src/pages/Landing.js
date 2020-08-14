@@ -3,36 +3,47 @@ import React, { Component } from 'react'
 import { FootyAPI } from '../utils/api'
 import logo from '../images/footy-stats.png'
 
+// Data
+import competitions from '../data/competitions.json'
+import standings from '../data/standings-epl.json'
+
 export default class Landing extends Component{
 
     constructor(props){
         super(props)
         
         this.state = {
-            competitions: [],
-            leagueTable: [],
-            activeLeague: ""
+            competitions: competitions.competitions,
+            leagueTable: standings,
+            activeLeague: "English Premier League"
         }
+
+        console.log(standings)
     }
 
     componentDidMount(){
-        
+
+        /*
         FootyAPI.getCompetitions()
             .then( (response) => {
                 var data = response.data
 
                 if(typeof data !== undefined){
+                    const competitions = data.competitions
+
                     this.setState({ 
-                        competitions: data
+                        competitions: competitions
                     })
 
-                    this.getLeagueTable(data[0].id)
+                    this.getLeagueTable(competitions[0].id)
                 }
             })
+        */
     }
 
     getLeagueTable(id){
-        FootyAPI.getCompetitions(id + '/leagueTable')
+        /*
+        FootyAPI.getCompetitions(id + '/standings')
             .then( (response) => {
                 var data = response.data
                 //console.log(data)
@@ -42,10 +53,11 @@ export default class Landing extends Component{
                     activeLeague: data.leagueCaption
                 })
             })
+        */
     }
 
     render(){
-        //console.log(this.state)
+        console.log(this.state)
 
         const { competitions, leagueTable, activeLeague } = this.state
 
@@ -55,11 +67,12 @@ export default class Landing extends Component{
                     <div className="app-logo">
                         <img src={ logo } alt="Footy Stats" />
                     </div>
-                    <h4>
+                    <h4 className="hidden">
                         Competitions &nbsp;
                         { competitions.length > 0 ? competitions[0].year : "" }
                     </h4>
 
+                    <div className="hidden">
                     {
                         competitions.length > 0 ? 
 
@@ -83,12 +96,13 @@ export default class Landing extends Component{
                     :
                         <div>Loading competitions...</div>
                     }
+                    </div>
                 </div>
 
                 <div className="col-sm-9">
                     <h4>Standings: { activeLeague }</h4>
                     {
-                        leagueTable.length > 0 ? 
+                        leagueTable.standings[0].table.length > 0 ? 
 
                         <table className="table table-striped table-bordered">
                         <thead>
@@ -108,20 +122,20 @@ export default class Landing extends Component{
                         <tbody>
                         {
                             
-                            leagueTable.map( (team, index)=>{
+                            leagueTable.standings[0].table.map( (team, index)=>{
                                 
                                 return(
                                     <tr key={ index }>
                                         <td>{ team.position }</td>
                                         <td>
-                                            <img src={ team.crestURI } alt="[IMG] " />
-                                            { team.teamName }
+                                            <img src={ team.team.crestUrl } alt="[IMG] " />
+                                            { team.team.name }
                                         </td>
                                         <td>{ team.playedGames }</td>
                                         <td>{ team.wins }</td>
-                                        <td>{ team.draws }</td>
-                                        <td>{ team.losses }</td>
-                                        <td>{ team.goals }</td>
+                                        <td>{ team.draw }</td>
+                                        <td>{ team.lost }</td>
+                                        <td>{ team.goalsFor }</td>
                                         <td>{ team.goalsAgainst }</td>
                                         <td>{ team.goalDifference }</td>
                                         <td>{ team.points }</td>
